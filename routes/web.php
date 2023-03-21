@@ -21,4 +21,10 @@ Route::get('/', function () {
 
 Route::get('/workflow', [WorkflowController::class, 'index']);
 
+Route::get('/verify-workflow/{idx}', function ($idx) {
+    $workflow = WorkflowStub::load($idx);
+    $workflow->verify();
+    return response()->json('ok');
+})->name('verify-workflow');
+
 
